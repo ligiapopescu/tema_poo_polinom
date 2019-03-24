@@ -1,21 +1,3 @@
-/*
-- polinoame reprezentate ca tablouri unidimensionale (prin gradul polinomului si vectorul coeficientilor
-(coeficientii vor apartine la monoame de grade consecutive) de dimensiune egala cu gradul plus 1,
-de la cel al termenului liber la cel de grad maxim)
-- fiecare coeficient va fi de tip double
-Metode:
-- << , >>
-- calculul valorii intr-un punct (double)
-- + (suma a doua polinoame)
-- - (diferenta a doua polinoame)
-- * (produsul a doua polinoame)
-Se creeaza o clasa de perechi (numar real, polinom), cu numarul real dat ca fiind de tip double
-si polinomul de tip clasa polinom, prietena a clasei polinom
-Metode:
-- <<, >> (din clasa polinom)
-- verificare daca numarul real dat este radacina
--
-*/
 #include <iostream>
 #include <fstream>
 #include <cmath>
