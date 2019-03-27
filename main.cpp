@@ -28,7 +28,7 @@ class pereche
 public:
     pereche();
     bool verificare_radacina();
-
+    bool operator==(const pereche& p);
     friend istream& operator>>(istream& i, pereche& pr);
     friend ostream& operator<<(ostream& i, const pereche& pr);
 };
@@ -100,7 +100,7 @@ bool polinom::operator==(const polinom& p)
 istream& operator>>(istream& i,polinom& p)
 {
     i>>p.grad;
-    delete p.coef; //sterg zona de memorie alocata in constructor
+    delete []p.coef; //sterg zona de memorie alocata in constructor
     p.coef = new double[p.grad+1]; //aloc o noua zona de memorie conform gradului
     for(int k = 0; k <= p.grad; k++)
         i>>p.coef[k];
@@ -226,6 +226,15 @@ pereche::pereche()
     polinom p(-1);
 }
 
+bool pereche::operator==(const pereche& pr)
+{
+  if(r != pr.r)
+    return false;
+  if(p == pr.r)
+    return true;
+  return false;
+}
+
 bool pereche::verificare_radacina()
 {
     if(p.calcul_valoare(r) == 0) //daca polinomul p ia valoarea 0 pentru valoarea reala r, atunci e radacina
@@ -278,7 +287,7 @@ int main()
     pereche vpr[n_p];
     for(int i = 0; i < n_p; i++)
         f>>vpr[i];
-    for(int i = 0; i < n; i++) //afisez perechile
+    for(int i = 0; i < n_p; i++) //afisez perechile
     {
         g<<"Perechea "<<i+1<<": "<<vpr[i]<<endl;
         if(vpr[i].verificare_radacina() == true)
@@ -286,15 +295,20 @@ int main()
         else
             g<<"Numarul real nu este radacina pentru polinom."<<endl;
     }
-
+    for(int i = 0; i < n_p; i++)
+      if(vpr[i] == vpr[0])
+      g<<"Perechea 1 este egala cu perechea "<<i+1<<". "<<endl;
+    else
+      g<<"Perechea 1 nu este egala cu perechea "<<i+1<<". "<<endl;
     f.close();
     g.close();
 
+  /*
     // citire de la tastatura si scriere pe ecran
     polinom p;
     cout<<"Introduceti polinomul (grad si coeficientii, pornind de la termenul liber pana la coeficientul de grad maxim):"<<endl;
     cin>>p;
     cout<<"Polinomul la puterea a treia este: "<<p*p*p<<endl;
-
+*/
     return 0;
 }
